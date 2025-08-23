@@ -1,100 +1,132 @@
-import React, { useEffect, useState } from 'react'
-import LOGO from "../assets/images/logo.png"
-import { MENU_LINKS } from '../utils/data';
-import { Link } from 'react-scroll';
-
+import React, { useState, useEffect } from "react";
+import { MENU_LINKS } from "../utils/data";
+import { Link } from "react-scroll";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-
-  const [isOpen, setIsOpen] = useState(true);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
-    };
-
-    // Set initial state based on screen size
-    handleResize();
-
-    // Listen to resize events
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup listener on component unmount
-    return () => {
-      window.addEventListener("resize", handleResize);
+    // Check for saved dark mode preference
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setIsDarkMode(savedDarkMode);
+    
+    if (savedDarkMode) {
+      document.documentElement.classList.add('dark');
     }
-  }, [])
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode.toString());
+    
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   return (
-    <nav className="container mx-auto sticky top-5 z-10">
-      {/* The typo 'itemas-center' has been corrected to 'items-center' below */}
-      <div className="flex items-center justify-between rounded-full bg-white/25 border border-[#fee6cc] backdrop-blur-[10px] m-5 p-3 md:p-0">
-        {/* Logo */}
-        <img className="h-7 ml-6 -mb-1" src={LOGO} alt="Logo" />
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-orange-100 dark:border-gray-700">
+      <div className="container mx-auto px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            Shashank
+          </div>
 
-        {/* Hamburger Icon (Visible only on small screens) */}
-        <button
-          className="block md:hidden text-[#333] mr-6 focus:outline-none"
-           onClick={toggleMenu}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-             {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            )}
-          {/* SVG path data would go here */}
-          </svg>
-        </button>
-
-        {/* Navigation Links */}
-        <ul className={`${isOpen ? "flex" : "hidden"} menu-wrapper`}>
-          {MENU_LINKS.map((item) => (
-            <li key={item.id}>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8">
+            {MENU_LINKS.map((link) => (
               <Link
-                activeClass="active"
-                to={item.to}
-                smooth
-                spy
-                offset={item.offset}
-                className="menu-item"
+                key={link.id}
+                to={link.to}
+                spy={true}
+                smooth={true}
+                offset={link.offset}
+                duration={500}
+                className="menu-item text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-orange-400"
               >
-                {item.label}
+                {link.label}
               </Link>
-            </li>
-          ))}
-        </ul>
+            ))}
+            
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-orange-100 dark:bg-gray-700 text-orange-600 dark:text-yellow-400 hover:bg-orange-200 dark:hover:bg-gray-600 transition-colors duration-200"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <FaSun size={18} /> : <FaMoon size={18} />}
+            </button>
+          </div>
 
-        {/*hire Me Button*/}
-        <button className="hidden md:block h-12 text-[15px] font-medium text-white bg-gradient-primary 
-                      rounded-full px-9 transition-transform duration-300 ease-in-out hover:scale-105">Hire Me</button>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center gap-4">
+            {/* Dark Mode Toggle for Mobile */}
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-orange-100 dark:bg-gray-700 text-orange-600 dark:text-yellow-400 hover:bg-orange-200 dark:hover:bg-gray-600 transition-colors duration-200"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <FaSun size={16} /> : <FaMoon size={16} />}
+            </button>
+            
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-700 dark:text-gray-300"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="menu-wrapper md:hidden">
+            {MENU_LINKS.map((link) => (
+              <Link
+                key={link.id}
+                to={link.to}
+                spy={true}
+                smooth={true}
+                offset={link.offset}
+                duration={500}
+                onClick={() => setIsMenuOpen(false)}
+                className="menu-item text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-orange-400"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </nav>
-  )
+  );
 };
 
 export default Navbar;

@@ -1,25 +1,40 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Hero from './sections/Hero'
-import TechnicalProficiency from './sections/TechnicalProficiency'
-import AboutMe from './sections/AboutMe'
-import MyProjects from './sections/MyProjects'
-import ContactMe from './sections/ContactMe'
-import Footer from './sections/Footer'
-
+// src/App.jsx
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './sections/Hero';
+import TechnicalProficiency from './sections/TechnicalProficiency';
+import AboutMe from './sections/AboutMe';
+import MyProjects from './sections/MyProjects';
+import ContactMe from './sections/ContactMe';
+import Footer from './sections/Footer';
+import IntroAnimation from './components/IntroAnimation';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
-  return (
-    <div>
-      <Navbar />
-      <Hero />
-      <TechnicalProficiency />
-      <AboutMe />
-      <MyProjects />
-      <ContactMe />
-      <Footer />
-    </div>
-  )
-}
+  const [showHero, setShowHero] = useState(false);
 
-export default App
+  const handleFinishIntro = () => {
+    setShowHero(true);
+  };
+
+  return (
+    <>
+      {showHero ? (
+        <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+          <Navbar />
+          <Hero />
+          <TechnicalProficiency />
+          <AboutMe />
+          <MyProjects />
+          <ContactMe />
+          <Footer />
+          <ScrollToTop />
+        </div>
+      ) : (
+        <IntroAnimation onFinish={handleFinishIntro} />
+      )}
+    </>
+  );
+};
+
+export default App;

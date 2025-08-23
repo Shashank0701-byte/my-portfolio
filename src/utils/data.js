@@ -204,6 +204,7 @@ export const PROJECTS = [
       "Real-Time Weather Dashboard | Weather API, Express, React JS, Node JS",
     image: PROJECT_IMG_1,
     tags: ["React", "Express.js", "Weather API", "Node.js"],
+    githubUrl: "https://github.com/yourusername/weather-dashboard",
   },
   {
     id: 2,
@@ -211,6 +212,7 @@ export const PROJECTS = [
       "Web-Based Board Game | A classic Snakes and Ladders board game",
     image: PROJECT_IMG_2,
     tags: ["React", "HTML", "CSS"],
+    githubUrl: "https://github.com/yourusername/snakes-ladders-game",
   },
   {
     id: 3,
@@ -218,6 +220,7 @@ export const PROJECTS = [
       "Noughts & Crosses Game | MongoDB, Express, React, Node.js | A sleek and modern take on the classic game of Noughts & Crosses (Tic-Tac-Toe).",
     image: PROJECT_IMG_3,
     tags: ["React", "UI/UX Design", "JavaScript"],
+    githubUrl: "https://github.com/yourusername/tic-tac-toe-game",
   },
 ];
 

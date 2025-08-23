@@ -26,12 +26,12 @@ const MyProjects = () => {
         updateScrollButtons();
     }, [emblaApi, updateScrollButtons]);
 return (
-  <section id="projects" className="bg-background mt-14">
+  <section id="projects" className="bg-white dark:bg-gray-900 mt-14">
     <div className="container mx-auto px-8 md:px-10 py-10">
       <div className="w-full lg:w-[60vw] mx-auto">
         <h4 className="section-title">Recent Projects</h4>
 
-        <p className="text-sm text-center mt-4 leading-6">
+        <p className="text-sm text-center mt-4 leading-6 text-gray-600 dark:text-gray-300">
           From concept to deployment, these projects showcase my technical
           expertise. I focus on clean code, performance, and user experience.
         </p>
@@ -50,6 +50,7 @@ return (
             imgUrl={project.image}
             title={project.title}
             tags={project.tags}
+            githubUrl={project.githubUrl}
           />
         </div>
       ))}
