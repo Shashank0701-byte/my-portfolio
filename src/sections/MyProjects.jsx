@@ -51,6 +51,7 @@ return (
             title={project.title}
             tags={project.tags}
             githubUrl={project.githubUrl}
+            liveDemoUrl={project.liveDemoUrl}
           />
         </div>
       ))}

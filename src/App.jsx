@@ -5,6 +5,7 @@ import Hero from './sections/Hero';
 import TechnicalProficiency from './sections/TechnicalProficiency';
 import AboutMe from './sections/AboutMe';
 import MyProjects from './sections/MyProjects';
+import Blog from './sections/Blog';
 import ContactMe from './sections/ContactMe';
 import Footer from './sections/Footer';
 import IntroAnimation from './components/IntroAnimation';
@@ -26,6 +27,7 @@ const App = () => {
           <TechnicalProficiency />
           <AboutMe />
           <MyProjects />
+          <Blog />
           <ContactMe />
           <Footer />
           <ScrollToTop />

@@ -34,7 +34,8 @@ export const MENU_LINKS = [
   { id: "02", label: "Skills", offset: -80, to: "skills" },
   { id: "03", label: "About Me", offset: -80, to: "about" },
   { id: "04", label: "Projects", offset: -80, to: "projects" },
-  { id: "05", label: "Contact", offset: -80, to: "contact" },
+  { id: "05", label: "Blog", offset: -80, to: "blog" },
+  { id: "06", label: "Contact", offset: -80, to: "contact" },
 ];
 
 export const STATS = [
@@ -205,6 +206,7 @@ export const PROJECTS = [
     image: PROJECT_IMG_1,
     tags: ["React", "Express.js", "Weather API", "Node.js"],
     githubUrl: "https://github.com/yourusername/weather-dashboard",
+    liveDemoUrl: "https://weather-dashboard-demo.netlify.app",
   },
   {
     id: 2,
@@ -213,6 +215,7 @@ export const PROJECTS = [
     image: PROJECT_IMG_2,
     tags: ["React", "HTML", "CSS"],
     githubUrl: "https://github.com/yourusername/snakes-ladders-game",
+    liveDemoUrl: "https://snakes-ladders-game-demo.netlify.app",
   },
   {
     id: 3,
@@ -221,6 +224,40 @@ export const PROJECTS = [
     image: PROJECT_IMG_3,
     tags: ["React", "UI/UX Design", "JavaScript"],
     githubUrl: "https://github.com/yourusername/tic-tac-toe-game",
+    liveDemoUrl: "https://tic-tac-toe-game-demo.netlify.app",
   },
+];
+
+export const BLOG_POSTS = [
+  {
+    id: 1,
+    title: "The Story of My Most Challenging Bug: How I Tamed an Unpredictable AI",
+    excerpt: "A deep dive into debugging an AI-powered feature that was behaving erratically. From initial confusion to systematic problem-solving, this post covers the debugging process, the tools I used, and the valuable lessons learned.",
+    category: "Technical Deep Dive",
+    readTime: "8 min read",
+    publishDate: "2024-01-15",
+    tags: ["AI", "Debugging", "Problem Solving", "Machine Learning"],
+    slug: "taming-unpredictable-ai-bug"
+  },
+  {
+    id: 2,
+    title: "5 Things I Learned Building a Real-Time Fantasy Sports App",
+    excerpt: "Building real-time applications comes with unique challenges. This post-mortem covers the technical decisions, performance optimizations, and user experience insights gained from developing a fantasy sports platform.",
+    category: "Project Post-Mortem",
+    readTime: "6 min read",
+    publishDate: "2024-01-10",
+    tags: ["Real-time", "WebSockets", "Performance", "User Experience"],
+    slug: "fantasy-sports-app-lessons"
+  },
+  {
+    id: 3,
+    title: "Why I Believe Spaced Repetition is the Future of Learning",
+    excerpt: "Exploring how spaced repetition algorithms can revolutionize how we learn and retain information. This philosophical piece discusses the intersection of technology, education, and cognitive science.",
+    category: "Tech Philosophy",
+    readTime: "5 min read",
+    publishDate: "2024-01-05",
+    tags: ["Learning", "Technology", "Education", "Cognitive Science"],
+    slug: "spaced-repetition-future-learning"
+  }
 ];
 
